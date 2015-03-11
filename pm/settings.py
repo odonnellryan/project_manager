@@ -59,10 +59,15 @@ WSGI_APPLICATION = 'pm.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'pm_db',
+        'USER': 'pm',
+        'PASSWORD': 'pm_user',
+        'HOST': 'localhost',
+        'PORT': '5433',
+        }
 }
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
