@@ -2,14 +2,14 @@ from django.db import models
 
 
 class Role(models.Model):
-    role_name = models.CharField(max_length=256)
+    role_name = models.CharField(max_length=256, null=False)
 
     def __str__(self):
         return self.role_name
 
 
 class Member(models.Model):
-    member_name = models.CharField(max_length=256)
+    member_name = models.CharField(max_length=256, null=False)
     roles = models.ManyToManyField(Role)
 
     def __str__(self):
@@ -17,29 +17,29 @@ class Member(models.Model):
 
 
 class Project(models.Model):
-    project_title = models.CharField(max_length=256)
-    created_date = models.DateTimeField('date created')
+    project_name = models.CharField(max_length=256, null=False)
+    created_date = models.DateTimeField('date created', null=False)
     project_members = models.ManyToManyField(Member)
 
     def __str__(self):
-        return self.project_title
+        return self.project_name
 
 
-class WorkItem(models.Model):
-    item_title = models.CharField(max_length=256)
-    item_description = models.CharField(max_length=5000)
+class Task(models.Model):
+    task_name = models.CharField(max_length=256, null=False)
+    task_description = models.CharField(max_length=5000, null=False)
     project = models.ForeignKey(Project)
     parent_item = models.ForeignKey('self')
     assigned_members = models.ManyToManyField(Member)
 
     def __str__(self):
-        return self.item_title
+        return self.task_name
 
 
 class TimeEstimate(models.Model):
     member = models.ForeignKey(Member)
-    work_item = models.ForeignKey(WorkItem)
-    time = models.IntegerField()
+    task = models.ForeignKey(Task)
+    time = models.IntegerField(null=False)
 
     def __str__(self):
-        return "_".join((self.member.member_name, self.work_item.item_title))
+        return "_".join((self.member.member_name, self.task.task_name))

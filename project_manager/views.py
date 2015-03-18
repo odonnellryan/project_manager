@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from project_manager.models import Task, Member, Project, TimeEstimate
 
-# Create your views here.
+def index(request):
+    tasks = Project.objects.order_by
+    return render(context)
