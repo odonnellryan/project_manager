@@ -10,7 +10,6 @@ Spec:
             - split feature to break items up, creates multiple children each time
     - assign members to projects, projects to members
     
-    
 1) A way to layout projects visibly
     - view and document work items and child items
     - close old projects

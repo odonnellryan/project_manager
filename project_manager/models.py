@@ -29,7 +29,7 @@ class Task(models.Model):
     task_name = models.CharField(max_length=256, null=False)
     task_description = models.CharField(max_length=5000, null=False)
     project = models.ForeignKey(Project)
-    parent_item = models.ForeignKey('self')
+    parent_item = models.ForeignKey('self', null=True, blank=True)
     assigned_members = models.ManyToManyField(Member)
 
     def __str__(self):
