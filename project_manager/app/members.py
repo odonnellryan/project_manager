@@ -8,8 +8,8 @@ def create_new_member(name, roles):
     :rtype: Member
     """
     member = Member(member_name=name)
-    member.roles.add(roles)
     member.save()
+    member.roles.add(roles)
     return member
 
 
@@ -26,7 +26,7 @@ def assign_role_to_member(member, role):
     :type role: Role
     :rtype: Member
     """
-    member.add(role)
+    member.roles.add(role)
     return member
 
 def create_new_role(name):
@@ -39,4 +39,4 @@ def create_new_role(name):
     return role
 
 def get_member_by_pk(pk):
-    return Member.get(pk=pk)
+    return Member.objects.get(pk=pk)
