@@ -15,3 +15,4 @@ class MemberTestCase(TestCase):
     def test_member_role_assignment(self):
         member = members.get_member_by_pk(self.member_pk)
         print(member.roles.all())
+        assert True == False
